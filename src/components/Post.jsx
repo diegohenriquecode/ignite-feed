@@ -1,3 +1,6 @@
+import {format} from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+
 import {Comment} from './Comment';
 import styles from './Post.module.css'
 import {Avatar} from "./Avatar.jsx";
@@ -6,13 +9,12 @@ import {Avatar} from "./Avatar.jsx";
 // publishedAt: Date
 // content: String
 export function Post({author, publishedAt, content}) {
+  // https://date-fns.org/v2.30.0/docs/format
+  const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    locale: ptBR
+  })
 
-  const publishedAtFormatted = new Intl.DateTimeFormat('pt-BR', {
-    day: '2-digit',
-    month: 'long',
-    hour: '2-digit',
-    minute: '2-digit'
-  }).format(publishedAt)
+  // const publishedDateRelativeToNow =
 
     return (
       <article className={styles.post}>
